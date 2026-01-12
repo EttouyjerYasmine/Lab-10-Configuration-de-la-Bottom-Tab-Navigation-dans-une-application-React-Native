@@ -1,50 +1,164 @@
-# Welcome to your Expo app 👋
+# Lab - Navigation par Onglets en Bas d'Écran
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 🎯 Objectif du Lab
+Transformer une application React Native utilisant une Stack Navigation en une application utilisant une Bottom Tab Navigation avec React Navigation v6.
 
-## Get started
+## 📋 Description
+Ce laboratoire guide la configuration d'une navigation par onglets en bas d'écran (Bottom Tabs). La tâche consiste à remplacer une Stack Navigation existante par une Tab Navigation permettant de basculer entre deux écrans : Login et Welcome.
 
-1. Install dependencies
+## 🏗️ Contexte Initial
+Le projet contient déjà :
+- Deux écrans fonctionnels : `LoginScreen` et `WelcomeScreen`
+- Une navigation Stack configurée
+- Tous les fichiers nécessaires sauf `App.js` qui doit être modifié
 
-   ```bash
-   npm install
-   ```
+## 🎮 Fonctionnalités Requises
+- Bottom Tab Navigation avec deux onglets : Login et Welcome
+- Écran initial : Login
+- Pas d'en-tête supplémentaire (header masqué)
+- Aucune modification des autres fichiers
 
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+## 📁 Structure des Fichiers
+```
+.
+├── App.js              ← SEUL FICHIER À MODIFIER
+├── components/
+│   ├── LoginScreen.js  ← Existant, ne pas modifier
+│   └── WelcomeScreen.js ← Existant, ne pas modifier
+└── package.json
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🔧 Étapes de Réalisation
 
-## Learn more
+### Étape 1 : Installation
+Installer la bibliothèque Bottom Tabs :
+```bash
+npm install @react-navigation/bottom-tabs
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+### Étape 2 : Importation
+Dans `App.js`, importer `createBottomTabNavigator` et l'instancier.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Étape 3 : Nettoyage
+Supprimer toutes les références à la Stack Navigation existante.
 
-## Join the community
+### Étape 4 : Configuration
+Configurer le Tab Navigator avec deux écrans :
+- Login → LoginScreen
+- Welcome → WelcomeScreen
 
-Join our community of developers creating universal apps.
+### Étape 5 : Ajustement
+Configurer les options minimales :
+- Écran initial : Login
+- Header masqué
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## ✅ Critères de Réussite
+
+1. **Fonctionnalité** :
+   - [ ] Deux onglets fonctionnels en bas d'écran
+   - [ ] Navigation entre Login et Welcome
+   - [ ] Écran initial : Login
+
+2. **Code** :
+   - [ ] Seul `App.js` est modifié
+   - [ ] Pas d'erreur de compilation
+   - [ ] Structure React Navigation v6 correcte
+
+3. **Interface** :
+   - [ ] Onglets visibles en bas d'écran
+   - [ ] Pas d'en-tête superposé
+   - [ ] Interface propre et responsive
+
+## ⚠️ Contraintes Techniques
+
+- **React Navigation v6** obligatoire
+- **Pas de personnalisation avancée** des onglets
+- **Pas de modification** des écrans existants
+- **Pas d'ajout** de dépendances supplémentaires
+
+## 🐛 Problèmes Courants & Solutions
+
+### ❌ Erreur : "NavigationContainer nested"
+**Cause** : Double `NavigationContainer` dans l'application
+**Solution** : Vérifier qu'un seul `NavigationContainer` existe
+
+### ❌ Erreur : Onglets non visibles
+**Cause** : Problème de style ou de structure
+**Solution** : Vérifier la flexibilité des conteneurs
+
+### ❌ Erreur : "Module not found"
+**Cause** : @react-navigation/bottom-tabs non installé
+**Solution** : `npm install @react-navigation/bottom-tabs`
+
+## 📱 Résultat Final Attendus
+
+### Comportement :
+1. L'application démarre sur l'écran Login
+2. Une barre d'onglets en bas permet de switcher entre :
+   - Onglet "Login" → Affiche LoginScreen
+   - Onglet "Welcome" → Affiche WelcomeScreen
+3. Pas d'en-tête visible au-dessus des écrans
+
+### Interface :
+```
++-------------------+
+|                   |
+|                   |
+|    Contenu de     |
+|     l'écran       |
+|                   |
+|                   |
+|                   |
++-------------------+
+|  Login | Welcome  |
++-------------------+
+```
+
+## 🔍 Validation
+
+Pour valider votre implémentation :
+
+1. **Test visuel** :
+   - Vérifiez la présence des deux onglets
+   - Testez la navigation entre les écrans
+   - Vérifiez l'absence d'en-tête
+
+2. **Test technique** :
+   ```bash
+   npm start
+   # L'application doit se compiler sans erreur
+   # La navigation doit être fluide
+   ```
+
+3. **Test de conformité** :
+   - Ouvrez `App.js` et vérifiez qu'aucun autre fichier n'a été modifié
+   - Vérifiez que seules les étapes demandées sont implémentées
+
+## 📚 Concepts Clés Maîtrisés
+
+À l'issue de ce lab, vous devez comprendre :
+- La différence entre Stack et Tab Navigation
+- La configuration de base de React Navigation v6
+- L'instanciation et l'utilisation de `createBottomTabNavigator`
+- Les options de configuration minimales d'un navigateur
+
+## Démonstration
+
+<img width="959" height="473" alt="LAB10 1" src="https://github.com/user-attachments/assets/80e436b2-4388-475d-8e70-80a14931dd76" />
+
+
+
+## 🏆 Compétences Évaluées
+
+- [ ] Installation correcte des dépendances
+- [ ] Importation des modules nécessaires
+- [ ] Configuration du Bottom Tab Navigator
+- [ ] Déclaration des écrans dans les onglets
+- [ ] Gestion des options de navigation
+- [ ] Respect des contraintes du lab
+
+## Auteurs 
+
+Réalisé par : Ettouyjer yasmine
+
+Encadré par : Pr.Mohamed Lechgar.
